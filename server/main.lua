@@ -1,6 +1,6 @@
 -- SERVER TEST CLIENT
 
-client = require("client")
+client = require("../client")
 
 function love.load()
   if client.connect("localhost","1337") then
@@ -45,9 +45,9 @@ function love.draw()
       end
       
       if xv.data then
-        love.graphics.rectangle("fill",(xi-1)*32,(yi-1)*32,32,32)
+        love.graphics.rectangle("fill",(xi-1)*32,(yi-1)*32,31,31)
       else
-        love.graphics.rectangle("line",(xi-1)*32,(yi-1)*32,32,32)
+        love.graphics.rectangle("line",(xi-1)*32,(yi-1)*32,31,31)
       end
     end
   end
