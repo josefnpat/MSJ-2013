@@ -1,4 +1,14 @@
-math.randomseed( os.time() )
+require "camera"
+require "player"
 
-git,git_count = "missing git.lua",0
-pcall( function() return require("git") end );
+function love.load()
+
+end
+
+function love.update(dt)
+
+end
+
+function love.draw()
+
+end
