@@ -3,15 +3,19 @@
 client = require("client")
 
 function love.load()
-  if client.connect("localhost","1337") then
+  local success,error = client.connect("localhost","1337")
+  if success then
     print("Connected successfully")
   else
-    print("Connection failed")
+    print("Connection failed:" .. error)
   end
 end
 
 function love.update(dt)
-  client.update(dt)
+  local success,error = client.update(dt)
+  if not success then
+    print("Failed to update:"..error)
+  end
 end
 
 function love.mousepressed(x,y,button)

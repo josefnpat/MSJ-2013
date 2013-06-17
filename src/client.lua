@@ -44,6 +44,10 @@ function client.update()
   return true
 end
 
+function client.money()
+  return 100
+end
+
 client.map = {}
 
 -- This function will get the map data that is currently cached by the client
@@ -83,18 +87,28 @@ end
 -- This function will allow you to build stuff for the current player.
 
 function client.map.buy(type,x,y)
-  local data = {}
-  data.owner = 1
-  data.type = type
-  data.hp = 100
-  client.map.data[y][x].data = data
-  return true
+  print("BUY")
+  if client.map.data[y][x].data then
+    return false,"There is already data there."
+  else
+    local data = {}
+    data.owner = 1
+    data.type = type
+    data.hp = 100
+    client.map.data[y][x].data = data
+    return true
+  end
 end
 
 -- This function will allow you to sell stuff for the current player.
 
 function client.map.sell(x,y)
-  client.map.data[y][x].data = nil
+  print("SELL")
+  if client.map.data[y][x].data then
+    client.map.data[y][x].data = nil
+  else
+    return false,"There isn't any data there."
+  end
   return true
 end
 
