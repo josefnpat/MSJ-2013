@@ -13,31 +13,29 @@ local clients = {}
 while 1 do
   local client,error = server:accept()
   if client then
-    client:settimeout(0.001)
+    client:settimeout(0.01)
     table.insert(clients,client)
   else
-    print(error)
+    print("accept error:"..error)
   end
   
-  for _,client in ipairs(clients) do
+  for clienti,client in ipairs(clients) do
   
     local line,error = client:receive()
     if error then
-      print(error)
+      table.remove(clients,clienti)
+      print("receive error:"..error)
     else
       if pcall(function() json.decode(line) end) then
         data = json.decode(line)
-        client:send(json.encode(payload).."\n")
-        time_end = socket.gettime()
-        print("receive:"..line.." ["..(time_end-time_start).."s]")
+        client:send(json.encode({test="Hello world."}).."\n")
+        print("receive:"..line)
       else
         print("json.decode() failed")
       end
     end
     
   end
-  
-  -- TODO ADD CLEANUP OF CLIENTS
   
 end
 

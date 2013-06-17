@@ -40,6 +40,14 @@ function client.disconnect()
   return true
 end
 
+-- This will tell you if the client is connected or not. 
+
+function client.status()
+  return "connected"
+end
+
+-- This is the update system that will update the cache.
+
 function client.update()
   return true
 end

@@ -1,18 +1,63 @@
 local client = {}
 
+require "json"
+require "socket"
+
+client.ip,client.port = "localhost",1337
+
+client.ping = 1
+
 -- Connect to the server with this command.  Only run this command once. on
 -- success, it will return true. false otherwise.
 
 function client.connect(ip,port)
+  local sock,error = socket.connect(client.ip,client.port)
+  if not sock then
+    client.sock = nil
+    return false,error
+  end
+  client.id = math.random(1,99999999)
+  client.sock = sock
+  client.ping_dt = 0
+  return true
 end
 
 -- This will inform the server that you have disconnected. This function will
 -- return true on success, and false otherwise.
 
 function client.disconnect()
+  client.sock = nil
 end
 
-function client.update()
+-- This will tell you if the client is connected or not.
+
+function client.status()
+  if client.sock then
+    return "connected"
+  end
+end
+
+-- This is the update system that will update the cache.
+
+function client.update(dt)
+  if client.sock then
+    client.ping_dt = client.ping_dt + dt
+    if client.ping_dt > client.ping then
+      client.ping_dt = 0
+      client.sock:send(json.encode({id=client.id}).."\n")
+      local line,error = client.sock:receive()
+      if error then
+        return false,error
+      else
+        print("response:"..line.."\n")
+        return true
+      end
+    else
+      return true
+    end
+  else
+    return false,"no sock"
+  end
 end
 
 function client.money()
