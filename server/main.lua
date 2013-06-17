@@ -1,6 +1,6 @@
 -- SERVER TEST CLIENT
 
-client = require("../client")
+client = require("client")
 
 function love.load()
   if client.connect("localhost","1337") then
