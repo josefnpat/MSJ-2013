@@ -1,42 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" width="16" height="16" tilewidth="32" tileheight="32">
+<map version="1.0" orientation="orthogonal" width="64" height="64" tilewidth="32" tileheight="32">
  <tileset firstgid="1" name="Tileset" tilewidth="32" tileheight="32">
   <image source="Tileset.png" trans="ff00ff" width="256" height="256"/>
   <terraintypes>
    <terrain name="cliff" tile="-1"/>
    <terrain name="grassa" tile="-1"/>
+   <terrain name="sand" tile="-1"/>
   </terraintypes>
   <tile id="0" terrain=",,,0"/>
   <tile id="1" terrain=",,0,0"/>
   <tile id="2" terrain=",,0,"/>
-  <tile id="3" terrain=",,,1"/>
-  <tile id="4" terrain=",,1,1"/>
-  <tile id="5" terrain=",,1,"/>
+  <tile id="3" terrain="2,2,2,1"/>
+  <tile id="4" terrain="2,2,1,1"/>
+  <tile id="5" terrain="2,2,1,2"/>
   <tile id="8" terrain=",0,,0"/>
   <tile id="9" terrain="0,0,0,0"/>
   <tile id="10" terrain="0,,0,"/>
-  <tile id="11" terrain=",1,,1"/>
+  <tile id="11" terrain="2,1,2,1"/>
   <tile id="12" terrain="1,1,1,1"/>
-  <tile id="13" terrain="1,,1,"/>
+  <tile id="13" terrain="1,2,1,2"/>
+  <tile id="14" terrain="1,1,1,2"/>
+  <tile id="15" terrain="1,1,2,1"/>
   <tile id="16" terrain=",0,,"/>
   <tile id="17" terrain="0,0,,"/>
   <tile id="18" terrain="0,,,"/>
-  <tile id="19" terrain=",1,,"/>
-  <tile id="20" terrain="1,1,,"/>
-  <tile id="21" terrain="1,,,"/>
+  <tile id="19" terrain="2,1,2,2"/>
+  <tile id="20" terrain="1,1,2,2"/>
+  <tile id="21" terrain="1,2,2,2"/>
+  <tile id="22" terrain="1,2,1,1"/>
+  <tile id="23" terrain="2,1,1,1"/>
   <tile id="24" terrain="0,0,0,"/>
   <tile id="25" terrain="0,0,,0"/>
+  <tile id="26" terrain="2,2,2,2"/>
   <tile id="32" terrain="0,,0,0"/>
   <tile id="33" terrain=",0,0,0"/>
  </tileset>
- <layer name="terrain" width="16" height="16">
+ <layer name="terrain" width="64" height="64">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
- <layer name="collision" width="16" height="16" opacity="0.51">
+ <layer name="collision" width="64" height="64" opacity="0.51">
   <data encoding="base64" compression="zlib">
-   eJxjZ2BgYMeC0QE2NYT0YAOU6MVlDjlgoPWPAsoBNeOQ0jRIqn5K8hE5+RCXWgBdIQGz
+   eJztmEEOhTAIRN15/xv/sDAx5jfWFhjamZd0qfAoRdPzOI5zYiGYydd7IfmXB4v7G6zed1o5s/i3YPU22HyfsO77Ra/vbv5f93onf9Zev5A/98y7I//2nGfwf9LzDdgZ5rNgyF/+8ud0N9D+6Foj97xCr6FiVzlriNiss8aQew1/9KxDuVeZ9Z459Lw3IvZIvEz/6NgzcT37j91/JqfMWBn+X/PKjFWxBhlx3p6NJqP2WfvqxQo5RsLuL4QQQqzyzxIFsz+zuyF/+TPXIPNOoiLy53U3EHdzlRjx36E+I/eju/TH6N2w/Dm8R2pTHU/31fy93XtqUKVeUe6telTpmUzvamcG7bmS/w8xyBae
   </data>
  </layer>
 </map>
