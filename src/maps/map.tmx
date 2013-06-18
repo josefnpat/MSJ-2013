@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="64" height="64" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="Tileset" tilewidth="32" tileheight="32">
+  <image source="Tileset.png" trans="ff00ff" width="256" height="256"/>
+  <terraintypes>
+   <terrain name="cliff" tile="-1"/>
+   <terrain name="grassa" tile="-1"/>
+  </terraintypes>
+  <tile id="0" terrain=",,,0"/>
+  <tile id="1" terrain=",,0,0"/>
+  <tile id="2" terrain=",,0,"/>
+  <tile id="3" terrain=",,,1"/>
+  <tile id="4" terrain=",,1,1"/>
+  <tile id="5" terrain=",,1,"/>
+  <tile id="8" terrain=",0,,0"/>
+  <tile id="9" terrain="0,0,0,0"/>
+  <tile id="10" terrain="0,,0,"/>
+  <tile id="11" terrain=",1,,1"/>
+  <tile id="12" terrain="1,1,1,1"/>
+  <tile id="13" terrain="1,,1,"/>
+  <tile id="16" terrain=",0,,"/>
+  <tile id="17" terrain="0,0,,"/>
+  <tile id="18" terrain="0,,,"/>
+  <tile id="19" terrain=",1,,"/>
+  <tile id="20" terrain="1,1,,"/>
+  <tile id="21" terrain="1,,,"/>
+  <tile id="24" terrain="0,0,0,"/>
+  <tile id="25" terrain="0,0,,0"/>
+  <tile id="32" terrain="0,,0,0"/>
+  <tile id="33" terrain=",0,0,0"/>
+ </tileset>
+ <layer name="terrain" width="64" height="64">
+  <data encoding="base64" compression="zlib">
+   eJztl8Fqw0AMRNekLdR1DWltQ5JT8v8fWRksKhQtMb4MWuYwJCx5exiEsq8vpfSSi+RXct4+v130vJM8NsYmM3+pMKNkCO75kVwb4Wus8pNkrvR5bYCP2HnLIrltmdxvdI6y8yd3bpk3ybvkI7hD5yg7b/sbDWt/P7qz2SQ7H3Vne5sq5/q9JV7nZCjPs2TPa8nO6x2+M+3rFZud9ztTmWVnd9l5uyt1VyyuO/um6Brg1/j/EL2jtmOUPzfAf0rulTv8zIyuy64Bfn0DRW/I6O3oZ+fRAN+b/nSWdI9E8+PZFvg1X+XfEXWPDI45VdgW+Mz+Tv+n/x/l0f6N5tH+jebR/o3mo+6y+jv9n/5P/6f/0//p//R/+j/9fz+f2d/p//T/ozzav9E82r/RPNq/0XzUXVZ/p//T/+n/9H/6P/2f/k//p//v5zP7O/2f/n+UR/s3mkf7N5pH+zeaj7rL6u/0f/o//Z/+T/+n/9P/6f/0/9f8H0Rn6iE=
+  </data>
+ </layer>
+ <layer name="collision" width="64" height="64" opacity="0.51">
+  <data encoding="base64" compression="zlib">
+   eJzt1zEKwCAMQNFs3v/G3UugGKFofA/cdPiLmhERI1lv2Z5s32lmW7r2/3VuN9UG/Xf3A9ysw9258o516q/+AU9X7e/0/5mdaTrOP19NXedfAAAAAAAAAAAAAABgfw+eBQGz
+  </data>
+ </layer>
+</map>

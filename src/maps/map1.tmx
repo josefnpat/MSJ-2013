@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="16" height="16" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="Tileset" tilewidth="32" tileheight="32">
+  <image source="Tileset.png" trans="ff00ff" width="256" height="256"/>
+  <terraintypes>
+   <terrain name="cliff" tile="-1"/>
+   <terrain name="grassa" tile="-1"/>
+  </terraintypes>
+  <tile id="0" terrain=",,,0"/>
+  <tile id="1" terrain=",,0,0"/>
+  <tile id="2" terrain=",,0,"/>
+  <tile id="3" terrain=",,,1"/>
+  <tile id="4" terrain=",,1,1"/>
+  <tile id="5" terrain=",,1,"/>
+  <tile id="8" terrain=",0,,0"/>
+  <tile id="9" terrain="0,0,0,0"/>
+  <tile id="10" terrain="0,,0,"/>
+  <tile id="11" terrain=",1,,1"/>
+  <tile id="12" terrain="1,1,1,1"/>
+  <tile id="13" terrain="1,,1,"/>
+  <tile id="16" terrain=",0,,"/>
+  <tile id="17" terrain="0,0,,"/>
+  <tile id="18" terrain="0,,,"/>
+  <tile id="19" terrain=",1,,"/>
+  <tile id="20" terrain="1,1,,"/>
+  <tile id="21" terrain="1,,,"/>
+  <tile id="24" terrain="0,0,0,"/>
+  <tile id="25" terrain="0,0,,0"/>
+  <tile id="32" terrain="0,,0,0"/>
+  <tile id="33" terrain=",0,0,0"/>
+ </tileset>
+ <layer name="terrain" width="16" height="16">
+  <data encoding="base64" compression="zlib">
+   eJyNk1ELwjAMhDM2B3a1oLYF55P+/x9phB7GW+p8+NgIvVySpkFEgnJTrsq5fU8E4oPybJpAWtYkJTp5Lsq6o4U+K6VTz9rRlkZV7o1MZ9DHSHGrmZSDMjs50If1T0ZrzyeKFYPnbX1zJ45/q0edUba92PgvPE/47Wl55tDUP73trDGrSt52p4YG3+Es3/PiGUP/vsOj8ujk4JoT1YId8nbY212uHe8I/ugFc/TqZy1Y5PNGMcdImtHRvgDv+g6j
+  </data>
+ </layer>
+ <layer name="collision" width="16" height="16" opacity="0.51">
+  <data encoding="base64" compression="zlib">
+   eJxjZ2BgYMeC0QE2NYT0YAOU6MVlDjlgoPWPAsoBNeOQ0jRIqn5K8hE5+RCXWgBdIQGz
+  </data>
+ </layer>
+</map>

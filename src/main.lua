@@ -1,14 +1,11 @@
-require "camera"
-require "player"
+Gamestate = require "gameState.gamestate"
+
+states = {}
+game = require("game")
+
 
 function love.load()
-
-end
-
-function love.update(dt)
-
-end
-
-function love.draw()
+	Gamestate.registerEvents()
+	Gamestate.switch(game)
 
 end
