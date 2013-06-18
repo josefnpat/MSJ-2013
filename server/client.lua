@@ -11,13 +11,17 @@ client.ping = 1
 -- success, it will return true. false otherwise.
 
 function client.connect(ip,port)
+  print("socket.connect start")
   local sock,error = socket.connect(client.ip,client.port)
-  if not sock then
+  print("socket.connect stop")
+  if sock then
+    sock:settimeout(0.01)
+    client.id = math.random(1,99999999)
+    client.sock = sock
+  else
     client.sock = nil
     return false,error
   end
-  client.id = math.random(1,99999999)
-  client.sock = sock
   client.ping_dt = 0
   return true
 end
@@ -44,12 +48,16 @@ function client.update(dt)
     client.ping_dt = client.ping_dt + dt
     if client.ping_dt > client.ping then
       client.ping_dt = 0
+      print("client.sock:send start")
       client.sock:send(json.encode({id=client.id}).."\n")
+      print("client.sock:send stop")
+      print("client.sock:receive start")
       local line,error = client.sock:receive()
+      print("client.sock:receive stop")
       if error then
         return false,error
       else
-        print("response:"..line.."\n")
+        print("response:"..line)
         return true
       end
     else
