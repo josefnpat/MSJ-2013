@@ -3,7 +3,7 @@ local client = {}
 require "json"
 require "socket"
 
-client.ip,client.port = "localhost",1337
+client.ip,client.port = "localhost",19870
 
 client.ping = 1
 

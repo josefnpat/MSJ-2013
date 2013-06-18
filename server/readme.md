@@ -1,1 +1,1 @@
-sudo apt-get install lua5.1 luasocket
+sudo apt-get install lua5.1 liblua5.1-socket2

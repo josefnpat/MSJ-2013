@@ -3,7 +3,7 @@
 local json = require("json")
 
 local socket = require("socket")
-local server = assert(socket.bind("*", 1337))
+local server = assert(socket.bind("*", 19870))
 local ip, port = server:getsockname()
 
 print("Server hosted on port " .. port)
