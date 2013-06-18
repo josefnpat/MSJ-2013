@@ -1,8 +1,8 @@
 camera = {}
 camera.x = 0
 camera.y = 0
-camera.sx = 1
-camera.sy = 1
+camera.sx = 0.5
+camera.sy = 0.5
 camera.rotation = 0
 
 function camera:set()
