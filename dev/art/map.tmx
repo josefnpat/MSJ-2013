@@ -29,9 +29,14 @@
   <tile id="32" terrain="0,,0,0"/>
   <tile id="33" terrain=",0,0,0"/>
  </tileset>
- <layer name="Tile Layer 1" width="16" height="16">
+ <layer name="terrain" width="16" height="16">
   <data encoding="base64" compression="zlib">
-   eJyNk9sKg0AMRLetLXjZBbtbQfvU///JJpDAEBLdhwMiTmZycUopTcJMZOJGPIiPsBHfANXuRBX9Ks+vEx3qVcu+d/HO4DsQz6Ae63+iGaGPAt8sUq8EetVw7sPRtw69ZtDes8m7OO+w/wNqZMcv6sFm1xpFcqtfC3Zp56e72GTuXs9n86vg0Ry/q/ld+Vk471uooB+cWXuwL96c7qgnu+0f77fH2+qj++39f1aYg3drHn/4UxOj
+   eJyNk1ELwjAMhDM2B3a1oLYF55P+/x9phB7GW+p8+NgIvVySpkFEgnJTrsq5fU8E4oPybJpAWtYkJTp5Lsq6o4U+K6VTz9rRlkZV7o1MZ9DHSHGrmZSDMjs50If1T0ZrzyeKFYPnbX1zJ45/q0edUba92PgvPE/47Wl55tDUP73trDGrSt52p4YG3+Es3/PiGUP/vsOj8ujk4JoT1YId8nbY212uHe8I/ugFc/TqZy1Y5PNGMcdImtHRvgDv+g6j
+  </data>
+ </layer>
+ <layer name="collision" width="16" height="16" opacity="0.51">
+  <data encoding="base64" compression="zlib">
+   eJxjZ2BgYMeC0QE2NYT0YAOU6MVlDjlgoPWPAsoBNeOQ0jRIqn5K8hE5+RCXWgBdIQGz
   </data>
  </layer>
 </map>
