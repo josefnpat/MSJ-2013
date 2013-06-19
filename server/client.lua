@@ -5,7 +5,7 @@ require "socket"
 
 client.ip,client.port = "localhost",19870
 
-client.ping = 1
+client.ping = 1/24
 
 -- Connect to the server with this command.  Only run this command once. on
 -- success, it will return true. false otherwise.
