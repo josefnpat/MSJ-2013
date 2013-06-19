@@ -1,7 +1,7 @@
 -- SERVER TEST CLIENT
 
 client = require("fake-client")
---client = require("client")
+client = require("client")
 
 function love.load()
   local success,error = client.connect("localhost",19870)
@@ -15,7 +15,7 @@ end
 function love.update(dt)
   if client.status() == "connected" then
     local success,error = client.update(dt)
-    if not success then
+    if not success and client.debug then
       print("Failed to update:"..error)
     end
   end
