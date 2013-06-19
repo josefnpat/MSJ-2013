@@ -1,6 +1,7 @@
 -- SERVER TEST CLIENT
 
 client = require("fake-client")
+--client = require("client")
 
 function love.load()
   local success,error = client.connect("localhost",19870)
