@@ -8,15 +8,17 @@ client.default.ip,client.default.port = "localhost",19870
 
 client.ping = 1/24
 
+client.debug = false
+
 -- Connect to the server with this command.  Only run this command once. on
 -- success, it will return true. false otherwise.
 
 function client.connect(ip,port)
   if not ip then ip = client.default.ip end
   if not port then port = client.defualt.port end
-  print("socket.connect start")
+  if client.debug then print("socket.connect start") end
   local sock,error = socket.connect(ip,port)
-  print("socket.connect stop")
+  if client.debug then print("socket.connect stop") end
   if sock then
     sock:settimeout(0.01)
     client.id = math.random(1,99999999)
@@ -51,16 +53,29 @@ function client.update(dt)
     client.ping_dt = client.ping_dt + dt
     if client.ping_dt > client.ping then
       client.ping_dt = 0
-      print("client.sock:send start")
-      client.sock:send(json.encode({id=client.id}).."\n")
-      print("client.sock:send stop")
-      print("client.sock:receive start")
+      
+      local op = {}
+      
+      if not client.map.data then
+        table.insert(op,{func="map_full"})
+      end
+      
+      if client.debug then print("client.sock:send start") end
+      client.sock:send(json.encode({id=client.id,op=op}).."\n")
+      if client.debug then print("client.sock:send stop") end
+      if client.debug then print("client.sock:receive start") end
       local line,error = client.sock:receive()
-      print("client.sock:receive stop")
+      if client.debug then print("client.sock:receive stop") end
       if error then
         return false,error
       else
-        print("response:"..line)
+        if client.debug then print("response:"..line) end
+        if pcall(function() json.decode(line) end) then
+          local data = json.decode(line)
+          for i,v in pairs(data) do
+            
+          end
+        end
         return true
       end
     else
@@ -85,6 +100,11 @@ client.map = {}
 --   `hp` - how much health the building has
 
 function client.map.get()
+  if client.map.data then
+    return client.map.data
+  else
+    return {}
+  end
 end
 
 -- This function will determine if an area is buildable.
