@@ -46,7 +46,7 @@ end
 
 function love.draw()
 
-  if client.status() == "connected potato" then
+  if client.status() == "connected" then
   
     local map = client.map.get()
   
