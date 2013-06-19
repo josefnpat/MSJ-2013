@@ -3,7 +3,8 @@ local client = {}
 require "json"
 require "socket"
 
-client.ip,client.port = "localhost",19870
+client.default = {}
+client.default.ip,client.default.port = "localhost",19870
 
 client.ping = 1/24
 
@@ -11,8 +12,10 @@ client.ping = 1/24
 -- success, it will return true. false otherwise.
 
 function client.connect(ip,port)
+  if not ip then ip = client.default.ip end
+  if not port then port = client.defualt.port end
   print("socket.connect start")
-  local sock,error = socket.connect(client.ip,client.port)
+  local sock,error = socket.connect(ip,port)
   print("socket.connect stop")
   if sock then
     sock:settimeout(0.01)

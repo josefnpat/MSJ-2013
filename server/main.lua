@@ -3,7 +3,7 @@
 client = require("client")
 
 function love.load()
-  local success,error = client.connect("50.116.63.25","1337")
+  local success,error = client.connect(localhost,19870)
   if success then
     print("Connected successfully")
   else
