@@ -1,6 +1,6 @@
 function love.conf(t)
-    t.title = "MidSummerJamWeek"
-    t.author = "Kripis"
+    t.title = ""
+    t.author = ""
     t.url = nil
     t.identity = nil
     t.version = "0.8.0"
