@@ -1,8 +1,10 @@
+-- http://nova-fusion.com/2011/05/09/cameras-in-love2d-part-3-movement-bounds/
+
 camera = {}
 camera.x = 0
 camera.y = 0
-camera.sx = 0.5
-camera.sy = 0.5
+camera.sx = 1
+camera.sy = 1
 camera.rotation = 0
 
 function camera:set()
