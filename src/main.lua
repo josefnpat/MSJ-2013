@@ -1,4 +1,4 @@
-Gamestate = require "gameState.gamestate"
+Gamestate = require "gamestate"
 
 states = {}
 game = require("game")
