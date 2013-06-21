@@ -1,11 +1,14 @@
+math.randomseed( os.time() )
+
+git,git_count = "missing git.lua",0
+pcall( function() return require("git") end );
+
 Gamestate = require "gamestate"
 
 states = {}
 game = require("game")
 
-
 function love.load()
 	Gamestate.registerEvents()
 	Gamestate.switch(game)
-
 end
