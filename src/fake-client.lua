@@ -4,7 +4,6 @@ local client = {}
 -- success, it will return true. false otherwise.
 
 function client.connect(ip,port)
-  print("Connecting to "..ip..":"..port)
   local m = {}
   
   client.map.w = math.random(8,16)
@@ -13,10 +12,10 @@ function client.connect(ip,port)
   for y = 1, client.map.h do
     m[y] = {}
     for x = 1,client.map.w do
-      if x == 1 or y == 1 or x == client.map.w or y == client.map.h then
-        m[y][x] = {c=1} -- obstruction
+      if math.random(1,10) == 1 then
+        m[y][x] = {tile=math.random(1,5),owner=math.random(1,10)} -- obstruction
       else
-        m[y][x] = {c=0} -- open space
+        m[y][x] = {tile=0} -- open space
       end
     end
   end
@@ -95,7 +94,7 @@ end
 -- This function will allow you to build stuff for the current player.
 
 function client.map.buy(type,x,y)
-  print("BUY")
+  print("BUY",type,x,y)
   if client.map.data[y][x].data then
     return false,"There is already data there."
   else

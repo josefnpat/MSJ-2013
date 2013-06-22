@@ -16,6 +16,7 @@ function connect:keypressed(key)
   local connect_valid = false
   if key == "1" then
     client = require("fake-client")
+    client.connect()
     connect_valid = true
   elseif key == "2" or key == "3" then
     require('libs/json')

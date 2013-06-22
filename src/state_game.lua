@@ -32,6 +32,15 @@ function game:draw()
     math.floor( (selection.x-1) * map.tileWidth),
     math.floor( (selection.y-1) * map.tileHeight)
   )
+  -- DEBUG EXAMPLE
+  for y,v in pairs(client.map.get()) do
+    for x,w in pairs(v) do
+      if w.tile ~= 0 then
+        love.graphics.rectangle("line",x*32,y*32,32,32)
+        love.graphics.print(w.tile .. "-" .. w.owner,x*32,y*32)
+      end
+    end
+  end
   camera:unset()
   love.graphics.print("Money: " .. client.money() .. "\n" ..
     "Camera X: " .. camera.x .. ", Tile X: " .. selection.x .. ", Mouse X: " .. mouseLoc.x .. "\n" .. 

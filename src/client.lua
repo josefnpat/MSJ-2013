@@ -5,7 +5,7 @@ client._money_t = 2
 client._money_t_dt = client._money_t
 
 client._map = {}
-client._map_t = 1
+client._map_t = 4
 client._map_t_dt = client._map_t
 
 function client.money()
