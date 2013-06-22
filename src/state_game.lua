@@ -36,8 +36,8 @@ function game:draw()
   for y,v in pairs(client.map.get()) do
     for x,w in pairs(v) do
       if w.tile ~= 0 then
-        love.graphics.rectangle("line",x*32,y*32,32,32)
-        love.graphics.print(w.tile .. "-" .. w.owner,x*32,y*32)
+        love.graphics.rectangle("line",(x-1)*32,(y-1)*32,32,32)
+        love.graphics.print(w.tile .. "-" .. w.owner,(x-1)*32,(y-1)*32)
       end
     end
   end

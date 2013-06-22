@@ -18,7 +18,7 @@ ops.map.server = function(clientid,data)
   local last_update_t = servercache.user.data[clientid].last_update
   servercache.user.data[clientid].last_update = socket.gettime()
   ret = {}
-  if last_update_t == nil then
+  if last_update_t == nil or data.full == 1 then
     ret.s=servercache.map.data
   else
     ret.u={}
@@ -41,7 +41,9 @@ ops.map.client = function(data)
   end
 end
 ops.map.validate = function(data)
-  return true -- no args to parse
+  if data.full then
+    return true
+  end
 end
 
 ops.buy = {}

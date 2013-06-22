@@ -12,7 +12,7 @@ function client.connect(ip,port)
   for y = 1, client.map.h do
     m[y] = {}
     for x = 1,client.map.w do
-      if math.random(1,10) == 1 then
+      if math.random(1,10) == 1 or (x==1 and y==1) or (x==64 and y==64)then
         m[y][x] = {tile=math.random(1,5),owner=math.random(1,10)} -- obstruction
       else
         m[y][x] = {tile=0} -- open space

@@ -40,7 +40,7 @@ for y = 1,servercache.map.y do
   for x = 1,servercache.map.x do
     -- TODO: have this data load from the collision layer from src/maps/map.tmx
     servercache.map.data[y][x] = {tile=0} -- open space
-    if math.random(1,10) == 1 then
+    if math.random(1,10) == 1 or (x==1 and y == 1) or (x == 64 and y == 64) then
       servercache.map.data[y][x].tile = math.random(1,#servercache.buildings.data)
       servercache.map.data[y][x].owner = math.random(1,10)
     end

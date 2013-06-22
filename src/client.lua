@@ -4,7 +4,7 @@ client._money = 0
 client._money_t = 2
 client._money_t_dt = client._money_t
 
-client._map = {}
+client._map = nil
 client._map_t = 0.5
 client._map_t_dt = client._map_t
 
@@ -14,7 +14,11 @@ end
 
 client.map = {}
 function client.map.get()
-  return client._map
+  if client._map == nil then
+    return {}
+  else
+    return client._map
+  end
 end
 
 function client.map.buy(type,x,y)
@@ -31,7 +35,11 @@ function client.update(dt)
   client._map_t_dt = client._map_t_dt + dt
   if client._map_t_dt > client._map_t then
     client._map_t_dt = 0
-    client.sock:run("map","")
+    if client._map == nil then
+      client.sock:run("map",{full=1})
+    else
+      client.sock:run("map",{full=0})
+    end
   end
 
   client.sock:update(dt)
