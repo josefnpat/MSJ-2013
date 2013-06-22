@@ -33,8 +33,9 @@ function game:draw()
     math.floor( (selection.y-1) * map.tileHeight)
   )
   camera:unset()
-  love.graphics.print("Camera X: " .. camera.x .. ", Tile X: " .. selection.x .. ", Mouse X: " .. mouseLoc.x, 20, 10)
-  love.graphics.print("Camera Y: " .. camera.y .. ", Tile Y: " .. selection.y .. ", Mouse Y: " .. mouseLoc.y, 20, 30)
+  love.graphics.print("Money: " .. client.money() .. "\n" ..
+    "Camera X: " .. camera.x .. ", Tile X: " .. selection.x .. ", Mouse X: " .. mouseLoc.x .. "\n" .. 
+    "Camera Y: " .. camera.y .. ", Tile Y: " .. selection.y .. ", Mouse Y: " .. mouseLoc.y, 32, 32)
 end
 
 function game:update(dt)
