@@ -16,6 +16,7 @@ mouseLoc.y = 0
 cameraMove = 500
 scale = 0.5
 tileSize = 32
+mouseScroll = 1/10
 function game:init()
   local AdvTiledLoader = require("AdvTiledLoader.Loader")
 
@@ -52,6 +53,18 @@ function game:update(dt)
     camera.y = camera.y - cameraMove*dt
   end
   if love.keyboard.isDown("s") or love.keyboard.isDown("down") then
+    camera.y = camera.y + cameraMove*dt
+  end
+
+  mx,my = love.mouse.getPosition()
+  if mx < love.graphics.getWidth()*mouseScroll then
+    camera.x = camera.x - cameraMove*dt
+  elseif mx > love.graphics.getWidth()*(1-mouseScroll) then
+    camera.x = camera.x + cameraMove*dt
+  end
+  if my < love.graphics.getHeight()*mouseScroll then
+    camera.y = camera.y - cameraMove*dt
+  elseif my > love.graphics.getHeight()*(1-mouseScroll) then
     camera.y = camera.y + cameraMove*dt
   end
 
