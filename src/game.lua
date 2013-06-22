@@ -15,7 +15,6 @@ mouseLoc.x = 0
 mouseLoc.y = 0
 cameraMove = 500
 scale = 0.5
-tileSize = 32
 mouseScroll = 1/10
 function game:init()
   local AdvTiledLoader = require("AdvTiledLoader.Loader")
