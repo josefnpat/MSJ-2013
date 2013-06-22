@@ -14,9 +14,9 @@ function client.connect(ip,port)
     m[y] = {}
     for x = 1,client.map.w do
       if x == 1 or y == 1 or x == client.map.w or y == client.map.h then
-        m[y][x] = {tile=2} -- obstruction
+        m[y][x] = {c=1} -- obstruction
       else
-        m[y][x] = {tile=1} -- open space
+        m[y][x] = {c=0} -- open space
       end
     end
   end

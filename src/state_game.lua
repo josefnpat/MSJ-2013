@@ -101,4 +101,8 @@ function game:update(dt)
   
 end
 
+function love.mousepressed(x,y,button)
+  client.map.buy(1,selection.x,selection.y)
+end
+
 return game
