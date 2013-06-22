@@ -41,16 +41,16 @@ function game:update(dt)
 
   love.graphics.setCaption(love.timer.getFPS())
 
-  if love.keyboard.isDown("d") then
+  if love.keyboard.isDown("d") or love.keyboard.isDown("right") then
     camera.x = camera.x + cameraMove*dt
   end
-  if love.keyboard.isDown("a") then
+  if love.keyboard.isDown("a") or love.keyboard.isDown("left") then
     camera.x = camera.x - cameraMove*dt
   end
-  if love.keyboard.isDown("w") then
+  if love.keyboard.isDown("w") or love.keyboard.isDown("up") then
     camera.y = camera.y - cameraMove*dt
   end
-  if love.keyboard.isDown("s") then
+  if love.keyboard.isDown("s") or love.keyboard.isDown("down") then
     camera.y = camera.y + cameraMove*dt
   end
   
