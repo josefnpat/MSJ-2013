@@ -47,6 +47,8 @@ for y = 1,servercache.map.y do
   end
 end
 
+servercache.map.changeset = {}
+
 while 1 do
   server:update()
 end

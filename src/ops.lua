@@ -14,10 +14,31 @@ end
 
 ops.map = {}
 ops.map.server = function(clientid,data)
-  return servercache.map.data
+  servercache.user.init(clientid)
+  local last_update_t = servercache.user.data[clientid].last_update
+  servercache.user.data[clientid].last_update = socket.gettime()
+  ret = {}
+  if last_update_t == nil then
+    ret.s=servercache.map.data
+  else
+    ret.u={}
+    for i,v in pairs(servercache.map.changeset) do
+      if v.update_t > last_update_t then
+        table.insert(ret.u,v)
+      end
+    end
+  end
+  return ret
 end
 ops.map.client = function(data)
-  client._map = data
+  if data.s then
+    client._map = data.s
+  end
+  if data.u then
+    for i,v in pairs(data.u) do
+      print("changeset",i,v)
+    end
+  end
 end
 ops.map.validate = function(data)
   return true -- no args to parse
