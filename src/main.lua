@@ -8,9 +8,10 @@ pcall( function() return require("git") end );
 Gamestate = require("libs.gamestate")
 
 states = {}
-states.game = require("game_state")
+states.game = require("state_game")
+states.connect = require("state_connect")
 
 function love.load()
 	Gamestate.registerEvents()
-	Gamestate.switch(states.game)
+	Gamestate.switch(states.connect)
 end
