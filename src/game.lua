@@ -18,7 +18,7 @@ scale = 0.5
 function game:init()
   local AdvTiledLoader = require("AdvTiledLoader.Loader")
 
-  selection_tile = love.graphics.newImage("images/selection.png")
+  selection_tile = love.graphics.newImage("assets/images/selection.png")
   
   AdvTiledLoader.path = "maps/"
   map = AdvTiledLoader.load("map1.tmx")
