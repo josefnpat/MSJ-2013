@@ -1,4 +1,4 @@
-require "camera"
+require "libs.camera"
 local game = {}
 
 window = {}
@@ -16,11 +16,10 @@ mouseLoc.y = 0
 cameraMove = 500
 scale = 0.5
 mouseScroll = 1/10
-function game:init()
-  local AdvTiledLoader = require("AdvTiledLoader.Loader")
+AdvTiledLoader = require("libs.AdvTiledLoader.Loader")
 
-  selection_tile = love.graphics.newImage("assets/images/selection.png")
-  
+function game:init()
+  selection_tile = love.graphics.newImage("assets/images/selection.png")  
   AdvTiledLoader.path = "maps/"
   map = AdvTiledLoader.load("map.tmx")
   camera:setScale(scale,scale)
