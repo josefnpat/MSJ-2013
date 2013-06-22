@@ -21,7 +21,7 @@ function game:init()
   selection_tile = love.graphics.newImage("assets/images/selection.png")
   
   AdvTiledLoader.path = "maps/"
-  map = AdvTiledLoader.load("map1.tmx")
+  map = AdvTiledLoader.load("map.tmx")
   camera:setScale(scale,scale)
 end
 
