@@ -14,7 +14,7 @@ mouseLoc = {}
 mouseLoc.x = 0
 mouseLoc.y = 0
 cameraMove = 500
-
+scale = 0.5
 function game:init()
   local AdvTiledLoader = require("AdvTiledLoader.Loader")
   commandCenter_tile = require("tileFiles.commandCenter_tile")
@@ -26,8 +26,7 @@ function game:init()
   
   AdvTiledLoader.path = "maps/"
   map = AdvTiledLoader.load("map.tmx")
-  map:setDrawRange(window.x,window.y,window.w,window.h)  
-  camera:setScale(0.5,0.5)
+  camera:setScale(scale,scale)
 end
 
 function game:draw()
@@ -44,6 +43,8 @@ end
 
 function game:update(dt)
 
+  love.graphics.setCaption(love.timer.getFPS())
+
   if love.keyboard.isDown("d") then
     camera.x = camera.x + cameraMove*dt
   end
@@ -56,6 +57,11 @@ function game:update(dt)
   if love.keyboard.isDown("s") then
     camera.y = camera.y + cameraMove*dt
   end
+  
+  map.offsetX = camera.x
+  map.offsetY = camera.y
+
+  map:setDrawRange(window.x+map.offsetX,window.y+map.offsetY,window.w*scale,window.h*scale)
   
   mouseLoc.x, mouseLoc.y = love.mouse.getPosition( ) 
   selection.x =  math.ceil((mouseLoc.x * camera.sx + (camera.x)) / map.tileWidth)
