@@ -17,15 +17,11 @@ cameraMove = 500
 scale = 0.5
 function game:init()
   local AdvTiledLoader = require("AdvTiledLoader.Loader")
-  commandCenter_tile = require("tileFiles.commandCenter_tile")
-  defensive_tile = require("tileFiles.defensive_tile")
-  offensive_tile = require("tileFiles.offensive_tile")
-  road_tile = require("tileFiles.road_tile")
 
-  selection_tile = love.graphics.newImage("selection.png")
+  selection_tile = love.graphics.newImage("images/selection.png")
   
   AdvTiledLoader.path = "maps/"
-  map = AdvTiledLoader.load("map.tmx")
+  map = AdvTiledLoader.load("map1.tmx")
   camera:setScale(scale,scale)
 end
 
