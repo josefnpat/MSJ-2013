@@ -15,6 +15,7 @@ mouseLoc.x = 0
 mouseLoc.y = 0
 cameraMove = 500
 scale = 0.5
+tileSize = 32
 function game:init()
   local AdvTiledLoader = require("AdvTiledLoader.Loader")
 
@@ -33,8 +34,8 @@ function game:draw()
     math.floor( (selection.y-1) * map.tileHeight)
   )
   camera:unset()
-  love.graphics.print("Tile X: " .. selection.x .. ", Mouse X: " .. mouseLoc.x, 20, 10)
-  love.graphics.print("Tile Y: " .. selection.y .. ", Mouse Y: " .. mouseLoc.y, 20, 30)
+  love.graphics.print("Camera X: " .. camera.x .. ", Tile X: " .. selection.x .. ", Mouse X: " .. mouseLoc.x, 20, 10)
+  love.graphics.print("Camera Y: " .. camera.y .. ", Tile Y: " .. selection.y .. ", Mouse Y: " .. mouseLoc.y, 20, 30)
 end
 
 function game:update(dt)
@@ -53,7 +54,21 @@ function game:update(dt)
   if love.keyboard.isDown("s") or love.keyboard.isDown("down") then
     camera.y = camera.y + cameraMove*dt
   end
-  
+
+  if camera.x < 0 then
+    camera.x = 0
+  end
+  if camera.y < 0 then
+    camera.y = 0
+  end
+  local max_camera_x = map.tileWidth  * map.width  - love.graphics.getWidth() *scale
+  local max_camera_y = map.tileHeight * map.height - love.graphics.getHeight()*scale
+  if camera.x > max_camera_x then
+    camera.x = max_camera_x
+  end  
+  if camera.y > max_camera_y then
+    camera.y = max_camera_y
+  end  
   map.offsetX = camera.x
   map.offsetY = camera.y
 
