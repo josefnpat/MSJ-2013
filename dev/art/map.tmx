@@ -47,7 +47,7 @@
   <image source="../../src/maps/buildings.png" trans="ff00ff" width="256" height="256"/>
  </tileset>
  <tileset firstgid="97" name="buildings" tilewidth="32" tileheight="64">
-  <image source="../../src/maps/buildings.png" trans="ff00ff" width="256" height="256"/>
+  <image source="buildings.png" trans="ff00ff" width="256" height="256"/>
  </tileset>
  <layer name="terrain" width="64" height="64">
   <data encoding="base64" compression="zlib">
@@ -61,7 +61,7 @@
  </layer>
  <layer name="building testing" width="64" height="64">
   <data encoding="base64" compression="zlib">
-   eJzt1kEKgDAMBMC8Vc3/vyA9FKvgOWJmoPS6m+bQCAAAAAC+7KgOUCyrAxTLuGawVwYplMs9Toc5jI6z7xb3Pfi7tXtEn95Pc887vf2b7v27/wMAAAAAAAAAAAC6OQHKgwlq
+   eJzt1VEKgCAQBUCvWun9r1CBQkT0a/RmYHHBH9ddtBQAAAC+bpl9gInqEW32ISapfU2sf/R9RKLEuuslT6v/fOdbyZ77dsuT7uDpr7vOwtrXrccf1Ze9pFl4Mubgz/1/o//Z/QcAAAAAAAAAAEi0A4TLD6w=
   </data>
  </layer>
 </map>
