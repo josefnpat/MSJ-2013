@@ -40,6 +40,8 @@ end
 
 function game:update(dt)
 
+  client.update(dt)
+
   love.graphics.setCaption(love.timer.getFPS())
 
   local cam_move_by_key = false

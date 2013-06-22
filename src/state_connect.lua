@@ -20,12 +20,13 @@ function connect:keypressed(key)
   elseif key == "2" or key == "3" then
     require('libs/json')
     require('socket')
+    client = require('client')
     jellyclient = require('libs.jelly-client')
     local ip = "localhost"
     if key == "3" then
       ip = "asswb.com"
     end
-    client,error = jellyclient.new(ip,19870,ops)
+    client.sock,error = jellyclient.new(ip,19870,ops)
     if error then
       connect.msg = error
       connect.msgt_dt = 0

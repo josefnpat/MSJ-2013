@@ -1,24 +1,14 @@
 local ops = {}
 
-ops.test = {}
-
-ops.test.server = function(clientid,data)
-  local ret = "ABC"..math.random(100,999)
-  print("-- incoming clientid:",clientid)
-  print("-- incoming data:",data)
-  print("-- outgoing data:",ret)
-  return ret
+ops.money = {}
+ops.money.server = function(clientid,data)
+  return 1337
 end
-
-ops.test.client = function(data)
-  print("-- incoming data:",data)
+ops.money.client = function(data)
+  client._money = data
 end
-
-ops.test.validate = function(data)
-  if type(data) == "string" then
-    print("-- data validated:",data)
-    return true
-  end
+ops.money.validate = function(data)
+  return true -- no args to parse
 end
 
 return ops
