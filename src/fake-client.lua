@@ -6,8 +6,8 @@ local client = {}
 function client.connect(ip,port)
   local m = {}
   
-  client.map.w = math.random(8,16)
-  client.map.h = math.random(8,16)
+  client.map.w = 64
+  client.map.h = 64
   
   for y = 1, client.map.h do
     m[y] = {}
