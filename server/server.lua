@@ -79,10 +79,10 @@ ticks.money.run = function()
     
       if w.tile == 1 then
         local clientid = find_clientid(w.owner)
-        servercache.user.data[clientid].money = servercache.user.data[clientid].money + 5
+        servercache.user.data[clientid].money = servercache.user.data[clientid].money + 10
       elseif w.tile == 5 then
         local clientid = find_clientid(w.owner)
-        servercache.user.data[clientid].money = servercache.user.data[clientid].money + 7
+        servercache.user.data[clientid].money = servercache.user.data[clientid].money + 3
       end
       
     end
