@@ -95,7 +95,7 @@ function game:draw()
       end
       love.graphics.drawq(bld.img,bld.quads[i],32,boff+64*(i-1))
       love.graphics.printf(v.name .. "\n$"..v.cost,96,boff+64*(i-1),225-64-64,"left")
-      love.graphics.printf("\n"..i,96,boff+64*(i-1),225-64-64,"right")
+      love.graphics.printf("\n"..i,96,boff+64*(i-1)+16,225-64-64,"right")
     end
   end
   love.graphics.setColor(255,255,255)
