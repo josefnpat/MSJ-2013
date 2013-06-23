@@ -30,6 +30,10 @@ function client.connect(ip,port)
   return true
 end
 
+function client.timetolive() 
+  return 14*60+55
+end
+
 -- This will inform the server that you have disconnected. This function will
 -- return true on success, and false otherwise.
 

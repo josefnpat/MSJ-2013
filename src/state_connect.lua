@@ -68,6 +68,7 @@ function connect:keypressed(key)
     else
       connect_valid = true
       client.sock:run("buildings","")
+      client.sock:run("timetolive","")
     end
   end
   if connect_valid then

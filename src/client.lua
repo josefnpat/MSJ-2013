@@ -24,6 +24,14 @@ for y = 1,64 do
   end
 end
 
+function client.timetolive()
+  if client._time_to_live then
+    return client._time_to_live
+  else
+    return 0
+  end
+end
+
 function client.money()
   return client._money
 end
@@ -60,6 +68,10 @@ function client.loadmap()
 end
 
 function client.update(dt)
+  if client._time_to_live then
+    client._time_to_live = client._time_to_live - dt
+  end
+  
   client._money_t_dt = client._money_t_dt + dt
   if client._money_t_dt > client._money_t then
     client._money_t_dt = 0

@@ -99,6 +99,11 @@ function game:draw()
     end
   end
   love.graphics.setColor(255,255,255)
+
+  local time = client.timetolive()
+  local min = math.floor(time/60)
+  local sec = math.floor(time - min*60)
+  love.graphics.printf("Server reset in "..min..":"..sec.." ",0,32,love.graphics.getWidth()-32,"right")
   
 end
 

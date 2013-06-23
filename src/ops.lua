@@ -1,5 +1,18 @@
 local ops = {}
 
+-- TIME TO LIVE
+
+ops.timetolive = {}
+ops.timetolive.server = function(clientid,data)
+  return time_to_live
+end
+ops.timetolive.client = function(data)
+  client._time_to_live = data
+end
+ops.timetolive.validate = function(data)
+  return true -- no args to parse
+end
+
 -- MONEY
 
 ops.money = {}
