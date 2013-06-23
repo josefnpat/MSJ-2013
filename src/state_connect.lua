@@ -7,7 +7,7 @@ connect.msgt_dt = 0
 
 function connect:draw()
   if client and client.loading then
-    connect.msg = "Loading ... "..client.loadmap().."\n"
+    connect.msg = "Downloading  map ... "..client.loadmap().."%\n"
     connect.msgt_dt = 0
   end
   love.graphics.print("Connect to:\n"..
@@ -38,7 +38,6 @@ function connect:keypressed(key)
       connect.msgt_dt = 0
     else
       connect_valid = true
-      client.sock:run("map",{x=1,y=1})
       client.sock:run("buildings","")
     end
   end

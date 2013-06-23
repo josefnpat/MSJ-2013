@@ -11,7 +11,7 @@ client._loadmap.t = 1/24
 client._loadmap.dt = 0
 client._loadmap.x = 1
 client._loadmap.y = 1
-client._loadmap.multiplex = 64
+client._loadmap.multiplex = 8
 
 for y = 1,64 do
   client._map[y] = {}
@@ -48,7 +48,7 @@ function client.ready()
 end
 
 function client.loadmap()
-  return math.floor((client._loadmap.x + client._loadmap.y*64)/(64^2)*100)
+  return math.floor((client._loadmap.x-1 + (client._loadmap.y-1)*64)/(64^2)*100)
 end
 
 function client.update(dt)
