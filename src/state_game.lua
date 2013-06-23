@@ -1,4 +1,6 @@
-require "libs.camera"
+require("libs.camera")
+colorgen = require("colorgen")
+
 local game = {}
 
 window = {}
@@ -36,7 +38,11 @@ function game:draw()
   for y,v in pairs(client.map.get()) do
     for x,w in pairs(v) do
       if w.tile ~= 0 then
+        if w.owner then
+          love.graphics.setColor( colorgen.get(w.owner) )
+        end
         love.graphics.rectangle("line",(x-1)*32,(y-1)*32,32,32)
+        love.graphics.setColor(255,255,255)
         love.graphics.print(w.tile .. "-" .. w.owner,(x-1)*32,(y-1)*32)
       end
     end
