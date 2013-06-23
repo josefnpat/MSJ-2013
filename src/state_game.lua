@@ -55,9 +55,27 @@ function game:draw()
   end
 
   camera:unset()
-  love.graphics.print("Money: " .. client.money() .. "\n" ..
+  love.graphics.print(
+    "Money: " .. client.money() .. "\n" ..
+    "Current selected building: " .. game.current_selected_building .. "\n" ..
     "Camera X: " .. camera.x .. ", Tile X: " .. selection.x .. ", Mouse X: " .. mouseLoc.x .. "\n" .. 
     "Camera Y: " .. camera.y .. ", Tile Y: " .. selection.y .. ", Mouse Y: " .. mouseLoc.y, 32, 32)
+    
+  local boff = 128
+  if client.buildings.get() then
+    for i,v in pairs(client.buildings.get()) do
+      if client.money() < v.cost then
+        love.graphics.setColor(255,0,0)
+      elseif game.current_selected_building == i then
+        love.graphics.setColor(0,255,0)
+      else
+        love.graphics.setColor(255,255,255)
+      end
+      love.graphics.print(v.name .. " ($"..v.cost..")",32,boff+16*i)
+    end
+  end
+  love.graphics.setColor(255,255,255)
+  
 end
 
 function game:update(dt)
@@ -123,8 +141,28 @@ function game:update(dt)
   
 end
 
-function game.mousepressed(x,y,button)
-  client.map.buy(1,selection.x,selection.y)
+game.current_selected_building = 1
+
+function game:keypressed(key)
+  if key == "1" then
+    game.current_selected_building = 1  
+  elseif key == "2" then
+    game.current_selected_building = 2
+  elseif key == "3" then
+    game.current_selected_building = 3
+  elseif key == "4" then
+    game.current_selected_building = 4
+  elseif key == "5" then
+    game.current_selected_building = 5  
+  end
+end
+
+function game:mousepressed(x,y,button)
+  if button == "l" then
+    client.map.buy(game.current_selected_building,selection.x,selection.y)
+  elseif button == "r" then
+    client.map.sell(selection.x,selection.y)
+  end
 end
 
 return game

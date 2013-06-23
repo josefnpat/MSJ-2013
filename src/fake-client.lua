@@ -5,6 +5,8 @@ local client = {}
 
 function client.connect(ip,port)
   local m = {}
+
+  client._money = 2000
   
   client.map.w = 64
   client.map.h = 64
@@ -22,11 +24,11 @@ function client.connect(ip,port)
   client.map.data = m -- PRIVATE
 
   client.buildings.data = { -- PRIVATE
-    {name = "Command Center",cost="0"},
-    {name = "Bunker",cost = "10"},
-    {name = "Turret",cost = "15"},
-    {name = "Road",cost = "2"},
-    {name = "Factory",cost = "20"},
+    {name = "Command Center",cost=1000},
+    {name = "Bunker",cost = 100},
+    {name = "Turret",cost = 150},
+    {name = "Road",cost = 20},
+    {name = "Factory",cost = 200},
   }
 
   return true
@@ -52,7 +54,7 @@ function client.update()
 end
 
 function client.money()
-  return 100
+  return client._money
 end
 
 function client.ready()
@@ -98,29 +100,25 @@ end
 -- This function will allow you to build stuff for the current player.
 
 function client.map.buy(type,x,y)
-  print("BUY",type,x,y)
-  if client.map.data[y][x].data then
-    return false,"There is already data there."
-  else
-    local data = {}
-    data.owner = 1
-    data.type = type
-    data.hp = 100
-    client.map.data[y][x].data = data
-    return true
+  if client._money >= client.buildings.data[type].cost and
+      client.map.data[y] and
+      client.map.data[y][x] and
+      not client.map.data[y][x].owner then
+    client.map.data[y][x].owner = 1
+    client.map.data[y][x].tile = type
+    client._money = client._money - client.buildings.data[type].cost
   end
 end
 
 -- This function will allow you to sell stuff for the current player.
 
 function client.map.sell(x,y)
-  print("SELL")
-  if client.map.data[y][x].data then
-    client.map.data[y][x].data = nil
-  else
-    return false,"There isn't any data there."
+  if client.map.data[y][x].owner == 1 then
+    local type = client.map.data[y][x].tile
+    client._money = client._money + math.floor(client.buildings.data[type].cost/2)
+    client.map.data[y][x].owner = nil
+    client.map.data[y][x].tile = 0
   end
-  return true
 end
 
 client.buildings = {}

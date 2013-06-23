@@ -16,18 +16,18 @@ function servercache.user.init(clientid)
   if not servercache.user.data[clientid] then
     servercache.user.data[clientid] = {}
     servercache.user.data[clientid].money = 2000
-    servercache.user.data[clientid].publicid = "X"..servercache.user.publicid
+    servercache.user.data[clientid].publicid = servercache.user.publicid
     servercache.user.publicid = servercache.user.publicid + 1
   end
 end
 
 servercache.buildings = {}
 servercache.buildings.data = {
-  {name = "Command Center",cost="0"}, 
-  {name = "Bunker",cost = "10"}, 
-  {name = "Turret",cost = "15"},
-  {name = "Road",cost = "2"}, 
-  {name = "Factory",cost = "20"},
+  {name="Command Center",cost=1000},
+  {name="Bunker",cost=100}, 
+  {name="Turret",cost=150},
+  {name="Road",cost=20}, 
+  {name="Factory",cost=200},
 }
 
 servercache.map = {}

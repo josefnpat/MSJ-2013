@@ -21,6 +21,10 @@ function client.map.buy(type,x,y)
   client.sock:run("buy",{type=type,x=x,y=y})
 end
 
+function client.map.sell(x,y)
+
+end
+
 client.buildings = {}
 
 function client.buildings.get()
