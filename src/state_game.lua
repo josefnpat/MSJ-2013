@@ -75,7 +75,10 @@ function game:draw()
   love.graphics.print( "$" .. client.money(),32,32)
 
   if client.closed() then
-    love.graphics.print("You have been disconnected.",32,64)
+    love.graphics.setColor(0,0,0,127)
+    love.graphics.rectangle("fill",0,32,love.graphics.getWidth(),32)
+    love.graphics.setColor(255,255,255)
+    love.graphics.printf("You have been disconnected.",0,32,love.graphics.getWidth(),"center")
   end
       
   local boff = 128
