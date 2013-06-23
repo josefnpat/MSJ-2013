@@ -4,9 +4,21 @@ client._money = 0
 client._money_t = 2
 client._money_t_dt = client._money_t
 
-client._map = nil
-client._map_t = 0.5
-client._map_t_dt = client._map_t
+client._map = {}
+
+client._loadmap = {}
+client._loadmap.t = 1/24
+client._loadmap.dt = 0
+client._loadmap.x = 1
+client._loadmap.y = 1
+client._loadmap.multiplex = 64
+
+for y = 1,64 do
+  client._map[y] = {}
+  for x = 1,64 do
+    client._map[y][x] = {tile=0}
+  end
+end
 
 function client.money()
   return client._money
@@ -32,7 +44,11 @@ function client.buildings.get()
 end
 
 function client.ready()
-  return client._maploaded
+  return client._loadmap.done
+end
+
+function client.loadmap()
+  return math.floor((client._loadmap.x + client._loadmap.y*64)/(64^2)*100)
 end
 
 function client.update(dt)
@@ -42,16 +58,29 @@ function client.update(dt)
     client.sock:run("money","")
   end
 
-  client._map_t_dt = client._map_t_dt + dt
-  if client._map_t_dt > client._map_t then
-    client._map_t_dt = 0
-    if client._map == nil then
-      client.sock:run("map",{full=1})
-    else
-      client.sock:run("map",{full=0})
+  if not client._loadmap.done then
+    client._loadmap.dt = client._loadmap.dt + dt
+    if client._loadmap.dt > client._loadmap.t then
+      client._loadmap.dt = 0
+      
+      for i = 1,client._loadmap.multiplex do
+        if client._loadmap.done then
+          break
+        end
+        client.sock:run("map",{x=client._loadmap.x,y=client._loadmap.y})
+        client._loadmap.x = client._loadmap.x + 1
+        if client._loadmap.x > 64 then
+          client._loadmap.x = 1
+          client._loadmap.y = client._loadmap.y + 1
+          if client._loadmap.y > 64 then
+            client._loadmap.done = true
+          end
+        end
+        
+      end
+      
     end
   end
-
   client.sock:update(dt)
   return true
 end
