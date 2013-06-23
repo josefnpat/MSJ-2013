@@ -151,7 +151,6 @@ function attack(x,y,owner)
   end
 end
 
-
 function find_clientid(publicid)
   local clientid
   for i,v in pairs(servercache.user.data) do

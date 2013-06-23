@@ -63,6 +63,9 @@ ops.mapq.queue = {}
 ops.mapq.newItem = function(x,y)
   local data = servercache.map.data[y][x]
   table.insert(ops.mapq.queue,{x=x,y=y,data=data,t=socket.gettime()})
+  if #ops.mapq.queue > 500 then
+    table.remove(x,1)
+  end
 end
 
 -- BUILDINGS
