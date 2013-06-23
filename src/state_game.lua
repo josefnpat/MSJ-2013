@@ -43,9 +43,10 @@ function game:draw()
         if w.owner then
           love.graphics.setColor( colorgen.get(w.owner) )
           if buildings then
-            love.graphics.print(buildings[w.tile].name,(x-1)*32,(y-1)*32)
+            love.graphics.print(buildings[w.tile].name.."\n"..w.hp,(x-1)*32,(y-1)*32)
           else
-            love.graphics.print(w.tile,(x-1)*32,(y-1)*32)          
+            love.graphics.print(w.tile,(x-1)*32,(y-1)*32)
+            print(w.hp)
           end
         end
         love.graphics.rectangle("line",(x-1)*32,(y-1)*32,32,32)

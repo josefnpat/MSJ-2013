@@ -24,11 +24,11 @@ end
 
 servercache.buildings = {}
 servercache.buildings.data = {
-  {name="Command Center",cost=1000},
-  {name="Bunker",cost=100}, 
-  {name="Turret",cost=150},
-  {name="Road",cost=20}, 
-  {name="Factory",cost=200},
+  {name="Command Center",cost=1000,hp=100},
+  {name="Bunker",cost=100,hp=50}, 
+  {name="Turret",cost=150,hp=25},
+  {name="Road",cost=20,hp=10}, 
+  {name="Factory",cost=200,hp=15},
 }
 
 servercache.map = {}

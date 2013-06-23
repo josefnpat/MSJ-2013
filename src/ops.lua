@@ -91,6 +91,7 @@ ops.buy.server = function(clientid,data)
     servercache.user.data[clientid].money = servercache.user.data[clientid].money - servercache.buildings.data[data.type].cost
     servercache.map.data[data.y][data.x].owner = servercache.user.data[clientid].publicid
     servercache.map.data[data.y][data.x].tile = data.type
+    servercache.map.data[data.y][data.x].hp = servercache.buildings.data[data.type].hp
     ops.mapq.newItem(data.x,data.y)
     return "success"
   else
