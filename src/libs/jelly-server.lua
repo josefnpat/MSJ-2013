@@ -69,7 +69,7 @@ function jellyserver:update()
     else
       if pcall(function() json.decode(line) end) then
         local dataline = json.decode(line)
-        if dataline and dataline.data then
+        if type(dataline) == "table" and dataline.data then
           if self._debug then print("update start") end
         
           local response = {}
