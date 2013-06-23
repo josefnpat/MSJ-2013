@@ -46,6 +46,51 @@ end
 
 servercache.map.changeset = {}
 
+ticks = {}
+ticks.money = {}
+ticks.money.t = 1
+ticks.money.dt = 0
+ticks.money.run = function()
+  for y,v in pairs(servercache.map.data) do
+    for x,w in pairs(v) do
+    
+      if w.tile == 1 then
+        local clientid = find_clientid(w.owner)
+        servercache.user.data[clientid].money = servercache.user.data[clientid].money + 5
+      elseif w.tile == 5 then
+        local clientid = find_clientid(w.owner)
+        servercache.user.data[clientid].money = servercache.user.data[clientid].money + 7
+      end
+      
+    end
+  end
+end
+
+function find_clientid(publicid)
+  local clientid
+  for i,v in pairs(servercache.user.data) do
+    if publicid == v.publicid then
+      clientid = i
+      break
+    end
+  end
+  return clientid
+end
+
+time = socket.gettime()
 while 1 do
+  last_time = time
+  time = socket.gettime()
+  dt = time - last_time
+  
   server:update()
+  
+  for i,v in pairs(ticks) do
+    v.dt = v.dt + dt
+    if v.dt > v.t then
+      v.dt = v.dt - v.t
+      v.run()
+    end
+  end
+    
 end
