@@ -38,7 +38,7 @@ function game:init()
 end
 
 function game:draw()
-  love.graphics.setFont(fonts.ui)
+  love.graphics.setFont(fonts.ui2)
   camera:set()
   map:draw()
   love.graphics.draw(selection_tile,
@@ -83,7 +83,7 @@ function game:draw()
       
   local boff = 128
   love.graphics.setColor(0,0,0,127)
-  love.graphics.rectangle("fill",0,boff-32,350,64*5+64)
+  love.graphics.rectangle("fill",0,boff-16,225,64*5+32)
   if client.buildings.get() then
     for i,v in pairs(client.buildings.get()) do
       if client.money() < v.cost then
@@ -94,8 +94,8 @@ function game:draw()
         love.graphics.setColor(255,255,255)
       end
       love.graphics.drawq(bld.img,bld.quads[i],32,boff+64*(i-1))
-      love.graphics.printf(v.name .. "\n$"..v.cost,96,boff+64*(i-1),350-64-64,"left")
-      love.graphics.printf("\n"..i,96,boff+64*(i-1),350-64-64,"right")
+      love.graphics.printf(v.name .. "\n$"..v.cost,96,boff+64*(i-1),225-64-64,"left")
+      love.graphics.printf("\n"..i,96,boff+64*(i-1),225-64-64,"right")
     end
   end
   love.graphics.setColor(255,255,255)

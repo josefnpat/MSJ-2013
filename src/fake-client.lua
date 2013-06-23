@@ -20,7 +20,7 @@ function client.connect(ip,port)
   client.map.data = m -- PRIVATE
 
   client.buildings.data = { -- PRIVATE
-    {name = "Command Center",cost=1000,hp=10},
+    {name = "Command",cost=1000,hp=10},
     {name = "Bunker",cost = 100,hp=10},
     {name = "Turret",cost = 150,hp=10},
     {name = "Road",cost = 20,hp=10},

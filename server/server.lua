@@ -50,8 +50,8 @@ end
 
 servercache.buildings = {}
 servercache.buildings.data = {
-  {name="Command Center",cost=100000,hp=100},
-  {name="Bunker",cost=50,hp=50}, 
+  {name="Command",cost=100000,hp=100},
+  {name="Bunker",cost=50,hp=75}, 
   {name="Turret",cost=300,hp=10},
   {name="Road",cost=10,hp=3}, 
   {name="Factory",cost=200,hp=15},
