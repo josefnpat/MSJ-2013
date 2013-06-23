@@ -1,7 +1,7 @@
 local client = {}
 
 client._money = 0
-client._money_t = 2
+client._money_t = 0.5
 client._money_t_dt = client._money_t
 
 client._map = {}
@@ -12,6 +12,10 @@ client._loadmap.dt = 0
 client._loadmap.x = 1
 client._loadmap.y = 1
 client._loadmap.multiplex = 8
+
+client._mapq = {}
+client._mapq_t = 1
+client._mapq_t_dt = 0
 
 for y = 1,64 do
   client._map[y] = {}
@@ -57,6 +61,12 @@ function client.update(dt)
     client._money_t_dt = 0
     client.sock:run("money","")
   end
+
+  client._mapq_t_dt = client._mapq_t_dt + dt
+  if client._mapq_t_dt > client._mapq_t then
+    client._mapq_t_dt = 0
+    client.sock:run("mapq","")
+  end  
 
   if not client._loadmap.done then
     client._loadmap.dt = client._loadmap.dt + dt

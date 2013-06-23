@@ -36,6 +36,35 @@ ops.map.validate = function(data)
   end
 end
 
+-- MAP QUEUE
+
+ops.mapq = {}
+ops.mapq.server = function(clientid,data)
+  servercache.user.init(clientid)
+  ret = {}
+  for i,v in pairs(ops.mapq.queue) do
+    if servercache.user.data[clientid].last_mapq_update <= v.t then
+      table.insert(ret,v)
+    end
+  end
+  servercache.user.data[clientid].last_mapq_update = socket.gettime()
+  return ret
+end
+ops.mapq.client = function(data)
+  for i,v in pairs(data) do
+    client._map[v.y][v.x] = v.data
+  end
+end
+ops.mapq.validate = function(data)
+  return true -- no args
+end
+
+ops.mapq.queue = {}
+ops.mapq.newItem = function(x,y)
+  local data = servercache.map.data[y][x]
+  table.insert(ops.mapq.queue,{x=x,y=y,data=data,t=socket.gettime()})
+end
+
 -- BUILDINGS
 
 ops.buildings = {}
@@ -62,6 +91,7 @@ ops.buy.server = function(clientid,data)
     servercache.user.data[clientid].money = servercache.user.data[clientid].money - servercache.buildings.data[data.type].cost
     servercache.map.data[data.y][data.x].owner = servercache.user.data[clientid].publicid
     servercache.map.data[data.y][data.x].tile = data.type
+    ops.mapq.newItem(data.x,data.y)
     return "success"
   else
     return "fail"
