@@ -105,4 +105,33 @@ ops.buy.validate = function(data)
   end
 end
 
+-- SELL
+
+ops.sell = {}
+ops.sell.server = function(clientid,data)
+  servercache.user.init(clientid)
+  if servercache.map.data[data.y] and -- valid y
+      servercache.map.data[data.y][data.x] and -- valid x
+      servercache.map.data[data.y][data.x].owner == servercache.user.data[clientid].publicid then -- client owns it
+    
+    
+    servercache.user.data[clientid].money = servercache.user.data[clientid].money + 
+      math.floor(servercache.buildings.data[ servercache.map.data[data.y][data.x].tile ].cost/2)
+    
+    servercache.map.data[data.y][data.x].owner = nil
+    servercache.map.data[data.y][data.x].tile = 0    
+    ops.mapq.newItem(data.x,data.y)
+    return "success"
+  else
+    return "fail"
+  end
+end
+ops.sell.client = function(data)
+end
+ops.sell.validate = function(data)
+  if data.x and data.y then
+    return true
+  end
+end
+
 return ops

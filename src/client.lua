@@ -14,7 +14,7 @@ client._loadmap.y = 1
 client._loadmap.multiplex = 8
 
 client._mapq = {}
-client._mapq_t = 1
+client._mapq_t = 1/24
 client._mapq_t_dt = 0
 
 for y = 1,64 do
@@ -38,7 +38,7 @@ function client.map.buy(type,x,y)
 end
 
 function client.map.sell(x,y)
-
+  client.sock:run("sell",{x=x,y=y})
 end
 
 client.buildings = {}
