@@ -32,7 +32,7 @@ function connect:keypressed(key)
     client = require("fake-client")
     client.connect()
     connect_valid = true
-  else
+  elseif not client then
     require('libs/json')
     require('socket')
     client = require('client')
@@ -45,6 +45,7 @@ function connect:keypressed(key)
     if error then
       connect.msg = error
       connect.msgt_dt = 0
+      client = nil
     else
       connect_valid = true
       client.sock:run("buildings","")
