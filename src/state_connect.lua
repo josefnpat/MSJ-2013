@@ -9,6 +9,7 @@ function connect:init()
   fonts.ui2 = love.graphics.newFont("assets/iceland_regular.ttf",24)
   music=love.audio.newSource("assets/house.mp3")
   music:setLooping(true)
+  music:setVolume(0.5)
   love.audio.play(music)
 end
 
