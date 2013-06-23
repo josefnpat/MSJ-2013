@@ -132,7 +132,7 @@ ticks.attack.run = function()
     
       if w.tile == 3 then
       
-        for i,v in pairs({{x+1,y},{x-1,y},{x,y+1},{x,y-1}}) do
+        for i,v in pairs({{x+1,y},{x-1,y},{x,y+1},{x,y-1},{x+1,y+1},{x-1,y+1},{x+1,y-1},{x-1,y-1}}) do
           attack(v[1],v[2],w.owner)
           ops.mapq.newItem(v[1],v[2])
         end
