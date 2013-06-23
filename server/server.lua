@@ -39,7 +39,7 @@ servercache.user.publicid = 1
 function servercache.user.init(clientid)
   if not servercache.user.data[clientid] then
     servercache.user.data[clientid] = {}
-    servercache.user.data[clientid].money = 100100
+    servercache.user.data[clientid].money = 101000
     servercache.user.data[clientid].publicid = servercache.user.publicid
     servercache.user.publicid = servercache.user.publicid + 1
     servercache.user.data[clientid].last_mapq_update = socket.gettime()
