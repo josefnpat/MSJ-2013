@@ -87,6 +87,7 @@ ops.buy.server = function(clientid,data)
       servercache.map.data[data.y][data.x] and -- valid x
       servercache.buildings.data[data.type] and -- valid building type
       servercache.user.data[clientid].money >= servercache.buildings.data[data.type].cost and --  enough money
+      (data.type == 1 or ops.buy.checkneighbors(data.x,data.y,clientid)) and -- ensure neighbors unless CC
       not servercache.map.data[data.y][data.x].owner then -- not owned by anyone
     servercache.user.data[clientid].money = servercache.user.data[clientid].money - servercache.buildings.data[data.type].cost
     servercache.map.data[data.y][data.x].owner = servercache.user.data[clientid].publicid
@@ -103,6 +104,18 @@ end
 ops.buy.validate = function(data)
   if data.x and data.y and data.type then
     return true
+  end
+end
+
+ops.buy.checkneighbors = function(x,y,clientid)
+  local owner = servercache.user.data[clientid].publicid
+  for i,v in pairs({{x+1,y},{x-1,y},{x,y+1},{x,y-1}}) do
+    if servercache.map.data[v[2]] and
+        servercache.map.data[v[2]][v[1]] and
+        servercache.map.data[v[2]][v[1]].owner and
+        servercache.map.data[v[2]][v[1]].owner == owner then
+      return true
+    end
   end
 end
 
