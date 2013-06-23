@@ -67,7 +67,7 @@ ticks.money.run = function()
 end
 
 ticks.checkuser = {}
-ticks.checkuser.t = 1
+ticks.checkuser.t = 10
 ticks.checkuser.dt = 0
 ticks.checkuser.run = function()
   for clientid,v in pairs(servercache.user.data) do
@@ -94,6 +94,40 @@ ticks.checkuser.run = function()
   end
   --]]
 end
+
+ticks.attack = {}
+ticks.attack.t = 1
+ticks.attack.dt = 0
+ticks.attack.run = function()
+  for y,v in pairs(servercache.map.data) do
+    for x,w in pairs(v) do
+    
+      if w.tile == 3 then
+      
+        for i,v in pairs({{x+1,y},{x-1,y},{x,y+1},{x,y-1}}) do
+          attack(v[1],v[2],w.owner)
+          ops.mapq.newItem(v[1],v[2])
+        end
+        
+      end
+      
+    end
+  end  
+end
+
+function attack(x,y,owner)
+  if servercache.map.data[y] and
+      servercache.map.data[y][x] and
+      servercache.map.data[y][x].owner and
+      servercache.map.data[y][x].owner ~= owner then
+    servercache.map.data[y][x].hp = servercache.map.data[y][x].hp - 1
+    if servercache.map.data[y][x].hp <= 0 then
+      servercache.map.data[y][x].tile = 0
+      servercache.map.data[y][x].owner = nil
+    end
+  end
+end
+
 
 function find_clientid(publicid)
   local clientid
