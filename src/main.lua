@@ -1,6 +1,6 @@
 math.randomseed( os.time() )
 
-game_name = "Temp Game Name"
+game_name = "Xapalus"
 
 love.graphics.setCaption(game_name)
 
