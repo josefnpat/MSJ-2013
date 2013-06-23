@@ -180,8 +180,6 @@ while time_to_live > 0 do
     end
   end
 
-print(time_to_live)
-
   time_to_live = time_to_live - dt
   
 end
