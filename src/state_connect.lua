@@ -37,9 +37,9 @@ function connect:draw()
       "* Bunkers are a great line of defense.\n"..
       "* Use 1-5 to select buildings.\n"..
       "* Move the mouse, arrow keys or wasd to navigate the map.\n"..
-      "* The server will restart if it crashes.\n"..
-      "* Git info: v" .. git_count .. " ["..git.."]\n"..
-      "* Fave fun! missingsentinelsoftware.com",32,256,love.graphics.getWidth()-64,"left")
+      "* The server will restart if it crashes.\n\n"..
+      "Git info: v" .. git_count .. " ["..git.."]\n"..
+      "Have fun! missingsentinelsoftware.com",32,256,love.graphics.getWidth()-64,"left")
 end
 
 function connect:keypressed(key)
