@@ -39,7 +39,7 @@ servercache.user.publicid = 1
 function servercache.user.init(clientid)
   if not servercache.user.data[clientid] then
     servercache.user.data[clientid] = {}
-    servercache.user.data[clientid].money = 2000
+    servercache.user.data[clientid].money = 100100
     servercache.user.data[clientid].publicid = servercache.user.publicid
     servercache.user.publicid = servercache.user.publicid + 1
     servercache.user.data[clientid].last_mapq_update = socket.gettime()
@@ -48,11 +48,11 @@ end
 
 servercache.buildings = {}
 servercache.buildings.data = {
-  {name="Command Center",cost=1000,hp=100},
+  {name="Command Center",cost=100000,hp=100},
   {name="Bunker",cost=100,hp=50}, 
-  {name="Turret",cost=150,hp=25},
-  {name="Road",cost=20,hp=10}, 
-  {name="Factory",cost=200,hp=15},
+  {name="Turret",cost=600,hp=10},
+  {name="Road",cost=20,hp=3}, 
+  {name="Factory",cost=400,hp=15},
 }
 
 servercache.map = {}
