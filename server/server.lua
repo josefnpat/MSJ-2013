@@ -8,6 +8,30 @@ ops = require('ops')
 
 server = jellyserver.new(19870,ops)
 
+map_export = require("map_export")
+
+for i,v in pairs(map_export.layers) do
+  if v.name == "collision" then
+    map_collision = {}
+    local tx,ty = 1,1
+    map_collision[ty] = {}
+    for j,w in pairs(v.data) do
+      if w == 7 then
+        map_collision[ty][tx] = true
+      else
+        map_collision[ty][tx] = false      
+      end
+      tx = tx + 1
+      if tx > 64 then
+        tx = 1
+        ty = ty + 1
+        map_collision[ty] = {}
+      end
+    end
+    break
+  end
+end
+
 servercache = {}
 servercache.user = {}
 servercache.user.data = {}
@@ -39,7 +63,6 @@ servercache.map.data = {}
 for y = 1,servercache.map.y do
   servercache.map.data[y] = {}
   for x = 1,servercache.map.x do
-    -- TODO: have this data load from the collision layer from src/maps/map.tmx
     servercache.map.data[y][x] = {tile=0} -- open space
   end
 end

@@ -86,6 +86,7 @@ ops.buy.server = function(clientid,data)
   if servercache.map.data[data.y] and -- valid y
       servercache.map.data[data.y][data.x] and -- valid x
       servercache.buildings.data[data.type] and -- valid building type
+      map_collision[data.y][data.x] == false and
       servercache.user.data[clientid].money >= servercache.buildings.data[data.type].cost and --  enough money
       (data.type == 1 or ops.buy.checkneighbors(data.x,data.y,clientid)) and -- ensure neighbors unless CC
       not servercache.map.data[data.y][data.x].owner then -- not owned by anyone
