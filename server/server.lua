@@ -3,6 +3,8 @@
 require "json"
 require "socket"
 
+time_to_live = 15*60
+
 jellyserver = require('jelly-server')
 ops = require('ops')
 
@@ -163,7 +165,7 @@ function find_clientid(publicid)
 end
 
 time = socket.gettime()
-while 1 do
+while time_to_live > 0 do
   last_time = time
   time = socket.gettime()
   dt = time - last_time
@@ -177,5 +179,9 @@ while 1 do
       v.run()
     end
   end
-    
+
+print(time_to_live)
+
+  time_to_live = time_to_live - dt
+  
 end
