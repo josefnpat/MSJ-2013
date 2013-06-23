@@ -66,6 +66,35 @@ ticks.money.run = function()
   end
 end
 
+ticks.checkuser = {}
+ticks.checkuser.t = 1
+ticks.checkuser.dt = 0
+ticks.checkuser.run = function()
+  for clientid,v in pairs(servercache.user.data) do
+    if socket.gettime() - servercache.user.data[clientid].last_mapq_update > 1 
+        and not servercache.user.data[clientid]._remove then
+      servercache.user.data[clientid]._remove = true
+      for y,v in pairs(servercache.map.data) do
+        for x,w in pairs(v) do
+          if w.owner == servercache.user.data[clientid].publicid then
+            w.owner = nil
+            w.tile = 0
+            ops.mapq.newItem(x,y)
+          end
+        end
+      end
+      
+    end
+  end
+  --[[ TODO: This doesn't actually remove the player for some reason.
+  for i,v in pairs(servercache.user.data) do
+    if v._remove then
+      table.remove(servercache.user.data,i)
+    end
+  end
+  --]]
+end
+
 function find_clientid(publicid)
   local clientid
   for i,v in pairs(servercache.user.data) do
