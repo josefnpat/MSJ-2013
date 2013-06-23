@@ -114,7 +114,8 @@ ops.buy.checkneighbors = function(x,y,clientid)
     if servercache.map.data[v[2]] and
         servercache.map.data[v[2]][v[1]] and
         servercache.map.data[v[2]][v[1]].owner and
-        servercache.map.data[v[2]][v[1]].owner == owner then
+        servercache.map.data[v[2]][v[1]].owner == owner and
+        (servercache.map.data[v[2]][v[1]].tile == 1 or servercache.map.data[v[2]][v[1]].tile == 4) then
       return true
     end
   end

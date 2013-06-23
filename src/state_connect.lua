@@ -32,6 +32,7 @@ function connect:draw()
   love.graphics.printf("Tips:\n"..
       "* You must place the command center first.\n"..
       "* You can only place buildings next to your other buildings.\n"..
+      "* Bunkers, Turrets and Factories can only be placed next to the Command Center or Roads.\n"..
       "* Turrets will attack other buildings.\n"..
       "* Factories will generate more income.\n"..
       "* Bunkers are a great line of defense.\n"..
