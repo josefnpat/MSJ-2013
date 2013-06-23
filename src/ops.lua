@@ -46,6 +46,17 @@ ops.map.validate = function(data)
   end
 end
 
+ops.buildings = {}
+ops.buildings.server = function(clientid,data)
+  return servercache.buildings.data
+end
+ops.buildings.client = function(data)
+  client._buildings = data
+end
+ops.buildings.validate = function(data)
+  return true
+end
+
 ops.buy = {}
 ops.buy.server = function(clientid,data)
   print("buy:server")

@@ -25,6 +25,13 @@ function client.map.buy(type,x,y)
   client.sock:run("buy",{type=type,x=x,y=y})
 end
 
+client.buildings = {}
+
+function client.buildings.get()
+  return client._buildings
+end
+
+
 function client.update(dt)
   client._money_t_dt = client._money_t_dt + dt
   if client._money_t_dt > client._money_t then

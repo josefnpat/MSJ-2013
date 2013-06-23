@@ -33,6 +33,8 @@ function connect:keypressed(key)
       connect.msgt_dt = 0
     else
       connect_valid = true
+      client.sock:run("map",{full=1})
+      client.sock:run("buildings","")
     end
   end
   if connect_valid then
