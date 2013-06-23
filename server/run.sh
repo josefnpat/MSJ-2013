@@ -1,3 +1,5 @@
 #!/bin/sh
-
-lua5.1 ./server.lua
+while true; do
+  lua5.1 ./server.lua
+  sleep 2
+done
