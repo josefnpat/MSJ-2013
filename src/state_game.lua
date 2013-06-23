@@ -88,7 +88,7 @@ function game:update(dt)
 
   client.update(dt)
 
-  love.graphics.setCaption(love.timer.getFPS())
+  love.graphics.setCaption(game_name .. " " .. love.timer.getFPS())
 
   local cam_move_by_key = false
   if love.keyboard.isDown("d") or love.keyboard.isDown("right") then

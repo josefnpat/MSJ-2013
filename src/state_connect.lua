@@ -1,35 +1,44 @@
 ops = require('ops')
 local connect = {}
 
+function connect:init()
+  connect.bg = love.graphics.newImage("assets/bg.png")
+  fonts = {}
+  fonts.title = love.graphics.newFont("assets/gimmie_danger.ttf",64)
+  fonts.ui = love.graphics.newFont("assets/iceland_regular.ttf",32)
+end
+
 connect.msg = ""
 connect.msgt = 1
 connect.msgt_dt = 0
 
 function connect:draw()
+  love.graphics.setColor(255,255,255)
+  love.graphics.draw(connect.bg,0,0,0,2/3,2/3)
+  love.graphics.setFont(fonts.title)
+  love.graphics.printf(game_name,0,0,love.graphics.getWidth(),"center")
+  love.graphics.setFont(fonts.ui)    
   if client and client.loading then
     connect.msg = "Downloading  map ... "..client.loadmap().."%\n"
     connect.msgt_dt = 0
   end
-  love.graphics.print("Connect to:\n"..
-        "1) fake-client (aka single player)\n"..
-        "2) localhost\n"..
-        "3) asswb.com\n\n"..
-        connect.msg.."\n",32,32)
+  love.graphics.print("Press any key to connect to asswb.com server.\n"..
+        connect.msg.."\n",256,512)
 end
 
 function connect:keypressed(key)
   local connect_valid = false
-  if key == "1" then
+  if key == "d" then
     client = require("fake-client")
     client.connect()
     connect_valid = true
-  elseif key == "2" or key == "3" then
+  else
     require('libs/json')
     require('socket')
     client = require('client')
     jellyclient = require('libs.jelly-client')
     local ip = "localhost"
-    if key == "3" then
+    if key ~= "l" then
       ip = "asswb.com"
     end
     client.sock,error = jellyclient.new(ip,19870,ops)
