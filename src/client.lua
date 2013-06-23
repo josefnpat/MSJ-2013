@@ -14,11 +14,7 @@ end
 
 client.map = {}
 function client.map.get()
-  if client._map == nil then
-    return {}
-  else
-    return client._map
-  end
+  return client._map
 end
 
 function client.map.buy(type,x,y)
@@ -31,6 +27,9 @@ function client.buildings.get()
   return client._buildings
 end
 
+function client.ready()
+  return client._maploaded
+end
 
 function client.update(dt)
   client._money_t_dt = client._money_t_dt + dt

@@ -6,10 +6,15 @@ connect.msgt = 1
 connect.msgt_dt = 0
 
 function connect:draw()
+  if client and client.loading then
+    connect.msg = "Loading ... "..math.random(1,10).."\n"
+    connect.msgt_dt = 0
+  end
   love.graphics.print("Connect to:\n"..
         "1) fake-client (aka single player)\n"..
         "2) localhost\n"..
-        "3) asswb.com\n\n"..connect.msg,32,32)
+        "3) asswb.com\n\n"..
+        connect.msg.."\n",32,32)
 end
 
 function connect:keypressed(key)
@@ -38,7 +43,7 @@ function connect:keypressed(key)
     end
   end
   if connect_valid then
-    Gamestate.switch(states.game)
+    client.loading = true
   end
 end
 
@@ -48,6 +53,12 @@ function connect:update(dt)
     if connect.msgt_dt > connect.msgt then
       connect.msgt_dt = 0
       connect.msg = ""
+    end
+  end
+  if client and client.loading then
+    client.update(dt)
+    if client.ready() then
+      Gamestate.switch(states.game)      
     end
   end
 end

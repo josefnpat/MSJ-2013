@@ -55,6 +55,10 @@ function client.money()
   return 100
 end
 
+function client.ready()
+  return true
+end
+
 client.map = {}
 
 -- This function will get the map data that is currently cached by the client

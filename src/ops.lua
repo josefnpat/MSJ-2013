@@ -33,6 +33,8 @@ end
 ops.map.client = function(data)
   if data.s then
     client._map = data.s
+  else
+    client._maploaded = true
   end
   if data.u then
     for i,v in pairs(data.u) do
