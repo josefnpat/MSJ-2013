@@ -69,24 +69,27 @@ function jellyserver:update()
     else
       if pcall(function() json.decode(line) end) then
         local dataline = json.decode(line)
-
-        if self._debug then print("update start") end
+        if dataline and dataline.data then
+          if self._debug then print("update start") end
         
-        local response = {}
-        for i,v in pairs(dataline.data) do
-          if self._op[v.f] and self._op[v.f].validate(v.d) then
-            local ret = self._op[v.f].server(dataline.id,v.d)
-            table.insert(response,{f=v.f,d=ret})
+          local response = {}
+          for i,v in pairs(dataline.data) do
+            if self._op[v.f] and self._op[v.f].validate(v.d) then
+              local ret = self._op[v.f].server(dataline.id,v.d)
+              table.insert(response,{f=v.f,d=ret})
+            end
           end
+        
+          if self._debug then print("update stop") end
+          
+          if self._debug then print(clienti.." client:send start") end
+          client:send(json.encode(response).."\n")
+          if self._debug then print(clienti.." client:send stop") end
+          
+          if self._debug then print("receive:"..line) end
+        else
+          print("transmission error :(")
         end
-        
-        if self._debug then print("update stop") end
-        
-        if self._debug then print(clienti.." client:send start") end
-        client:send(json.encode(response).."\n")
-        if self._debug then print(clienti.." client:send stop") end
-        
-        if self._debug then print("receive:"..line) end
       else
         if self._debug then print("json.decode() failed") end
       end
