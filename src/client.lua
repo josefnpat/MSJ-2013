@@ -11,7 +11,7 @@ client._loadmap.t = 1/24
 client._loadmap.dt = 0
 client._loadmap.x = 1
 client._loadmap.y = 1
-client._loadmap.multiplex = 64
+client._loadmap.multiplex = 8
 
 client._mapq = {}
 client._mapq_t = 1/24
