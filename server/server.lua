@@ -91,6 +91,7 @@ ticks.money.run = function()
   end
 end
 
+--[[
 ticks.checkuser = {}
 ticks.checkuser.t = 10
 ticks.checkuser.dt = 0
@@ -111,6 +112,7 @@ ticks.checkuser.run = function()
       
     end
   end
+--]]
   --[[ TODO: This doesn't actually remove the player for some reason.
   for i,v in pairs(servercache.user.data) do
     if v._remove then
@@ -118,8 +120,9 @@ ticks.checkuser.run = function()
     end
   end
   --]]
+--[[
 end
-
+--]]
 ticks.attack = {}
 ticks.attack.t = 1
 ticks.attack.dt = 0
