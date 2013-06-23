@@ -1,4 +1,6 @@
-require "libs.camera"
+require("libs.camera")
+colorgen = require("colorgen")
+
 local game = {}
 
 window = {}
@@ -32,15 +34,26 @@ function game:draw()
     math.floor( (selection.x-1) * map.tileWidth),
     math.floor( (selection.y-1) * map.tileHeight)
   )
+
   -- DEBUG EXAMPLE
+  local buildings = client.buildings.get()
   for y,v in pairs(client.map.get()) do
     for x,w in pairs(v) do
       if w.tile ~= 0 then
+        if w.owner then
+          love.graphics.setColor( colorgen.get(w.owner) )
+          if buildings then
+            love.graphics.print(buildings[w.tile].name,(x-1)*32,(y-1)*32)
+          else
+            love.graphics.print(w.tile,(x-1)*32,(y-1)*32)          
+          end
+        end
         love.graphics.rectangle("line",(x-1)*32,(y-1)*32,32,32)
-        love.graphics.print(w.tile .. "-" .. w.owner,(x-1)*32,(y-1)*32)
+        love.graphics.setColor(255,255,255)
       end
     end
   end
+
   camera:unset()
   love.graphics.print("Money: " .. client.money() .. "\n" ..
     "Camera X: " .. camera.x .. ", Tile X: " .. selection.x .. ", Mouse X: " .. mouseLoc.x .. "\n" .. 
