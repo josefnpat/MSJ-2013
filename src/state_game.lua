@@ -25,9 +25,20 @@ function game:init()
   AdvTiledLoader.path = "maps/"
   map = AdvTiledLoader.load("map.tmx")
   camera:setScale(scale,scale)
+  
+  bld = {}
+  bld.img = love.graphics.newImage("maps/buildings.png")
+  bld.img_color = love.graphics.newImage("maps/buildings_color.png")
+  
+  bld.quads = {}
+  for i = 1,5 do
+    bld.quads[i] = love.graphics.newQuad( (i-1)*32,0,32,64,256,256)
+  end
+  
 end
 
 function game:draw()
+  love.graphics.setFont(fonts.ui)
   camera:set()
   map:draw()
   love.graphics.draw(selection_tile,
@@ -41,15 +52,16 @@ function game:draw()
     for x,w in pairs(v) do
       if w.tile ~= 0 then
         if w.owner then
+          love.graphics.setColor(255,255,255)
+          love.graphics.drawq(bld.img,bld.quads[w.tile],(x-1)*32,(y-2)*32)
           love.graphics.setColor( colorgen.get(w.owner) )
+          love.graphics.drawq(bld.img_color,bld.quads[w.tile],(x-1)*32,(y-2)*32)
           if buildings then
-            love.graphics.print(buildings[w.tile].name.."\n"..w.hp,(x-1)*32,(y-1)*32)
+            --love.graphics.print(buildings[w.tile].name.."\n"..w.hp,(x-1)*32,(y-1)*32)
           else
-            love.graphics.print(w.tile,(x-1)*32,(y-1)*32)
-            print(w.hp)
+            --love.graphics.print(w.tile,(x-1)*32,(y-1)*32)
           end
         end
-        love.graphics.rectangle("line",(x-1)*32,(y-1)*32,32,32)
         love.graphics.setColor(255,255,255)
       end
     end

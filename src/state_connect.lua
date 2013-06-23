@@ -19,7 +19,7 @@ function connect:draw()
   love.graphics.printf(game_name,0,0,love.graphics.getWidth(),"center")
   love.graphics.setFont(fonts.ui)    
   if client and client.loading then
-    connect.msg = "Downloading  map ... "..client.loadmap().."%\n"
+    connect.msg = "Synchronizing map ... "..client.loadmap().."%\n"
     connect.msgt_dt = 0
   end
   love.graphics.print("Press any key to connect to asswb.com server.\n"..
