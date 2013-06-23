@@ -11,7 +11,7 @@ client._loadmap.t = 1/24
 client._loadmap.dt = 0
 client._loadmap.x = 1
 client._loadmap.y = 1
-client._loadmap.multiplex = 8
+client._loadmap.multiplex = 64
 
 client._mapq = {}
 client._mapq_t = 1/24
@@ -26,6 +26,10 @@ end
 
 function client.money()
   return client._money
+end
+
+function client.closed()
+  return client.sock._closed
 end
 
 client.map = {}

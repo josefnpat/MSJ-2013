@@ -80,6 +80,9 @@ function jellyclient:update(dt)
     if self._debug then print("client.sock:receive stop") end
     
     if error then
+      if error == "closed" then
+        self._closed = true 
+      end
       if self._debug then print(error) end
       return false,error
     else

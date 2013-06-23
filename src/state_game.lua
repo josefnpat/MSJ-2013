@@ -56,11 +56,16 @@ function game:draw()
   end
 
   camera:unset()
+  
+  if client.closed() then
+    love.graphics.print("You have been disconnected.",32,32)
+  end
+  
   love.graphics.print(
     "Money: " .. client.money() .. "\n" ..
     "Current selected building: " .. game.current_selected_building .. "\n" ..
     "Camera X: " .. camera.x .. ", Tile X: " .. selection.x .. ", Mouse X: " .. mouseLoc.x .. "\n" .. 
-    "Camera Y: " .. camera.y .. ", Tile Y: " .. selection.y .. ", Mouse Y: " .. mouseLoc.y, 32, 32)
+    "Camera Y: " .. camera.y .. ", Tile Y: " .. selection.y .. ", Mouse Y: " .. mouseLoc.y, 32, 64)
     
   local boff = 128
   if client.buildings.get() then

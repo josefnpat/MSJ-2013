@@ -20,11 +20,11 @@ function client.connect(ip,port)
   client.map.data = m -- PRIVATE
 
   client.buildings.data = { -- PRIVATE
-    {name = "Command Center",cost=1000},
-    {name = "Bunker",cost = 100},
-    {name = "Turret",cost = 150},
-    {name = "Road",cost = 20},
-    {name = "Factory",cost = 200},
+    {name = "Command Center",cost=1000,hp=10},
+    {name = "Bunker",cost = 100,hp=10},
+    {name = "Turret",cost = 150,hp=10},
+    {name = "Road",cost = 20,hp=10},
+    {name = "Factory",cost = 200,hp=10},
   }
 
   return true
@@ -35,6 +35,10 @@ end
 
 function client.disconnect()
   return true
+end
+
+function client.closed()
+  return false
 end
 
 -- This will tell you if the client is connected or not. 
@@ -106,6 +110,7 @@ function client.map.buy(type,x,y)
       not client.map.data[y][x].owner then
     client.map.data[y][x].owner = 1
     client.map.data[y][x].tile = type
+    client.map.data[y][x].hp = client.buildings.data[type].hp
     client._money = client._money - client.buildings.data[type].cost
   end
 end
