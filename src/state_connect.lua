@@ -6,7 +6,7 @@ function connect:init()
   fonts = {}
   fonts.title = love.graphics.newFont("assets/gimmie_danger.ttf",64)
   fonts.ui = love.graphics.newFont("assets/iceland_regular.ttf",32)
-  fonts.ui2 = love.graphics.newFont("assets/iceland_regular.ttf",16)
+  fonts.ui2 = love.graphics.newFont("assets/iceland_regular.ttf",24)
   music=love.audio.newSource("assets/house.mp3")
   music:setLooping(true)
   love.audio.play(music)
@@ -26,8 +26,20 @@ function connect:draw()
     connect.msg = "Synchronizing map ... "..client.loadmap().."%\n"
     connect.msgt_dt = 0
   end
-  love.graphics.print("Press any key to connect to asswb.com server.\n"..
-        connect.msg.."\n",256,512)
+  love.graphics.printf("Press any key to connect to asswb.com server.\n"..
+      connect.msg.."\n",32,640,love.graphics.getWidth()-64,"center")
+  love.graphics.setFont(fonts.ui2)
+  love.graphics.printf("Tips:\n"..
+      "* You must place the command center first.\n"..
+      "* You can only place buildings next to your other buildings.\n"..
+      "* Turrets will attack other buildings.\n"..
+      "* Factories will generate more income.\n"..
+      "* Bunkers are a great line of defense.\n"..
+      "* Use 1-5 to select buildings.\n"..
+      "* Move the mouse, arrow keys or wasd to navigate the map.\n"..
+      "* The server will restart if it crashes.\n"..
+      "* Git info: v" .. git_count .. " ["..git.."]\n"..
+      "* Fave fun! missingsentinelsoftware.com",32,256,love.graphics.getWidth()-64,"left")
 end
 
 function connect:keypressed(key)

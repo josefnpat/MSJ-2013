@@ -56,7 +56,13 @@ function game:draw()
           love.graphics.setColor( colorgen.get(w.owner) )
           love.graphics.drawq(bld.img_color,bld.quads[w.tile],(x-1)*32,(y-2)*32)
           if buildings then
-            love.graphics.print(w.hp,(x-1)*32,(y-1)*32)
+            local percent = w.hp/buildings[w.tile].hp
+            if percent < 1 then
+              love.graphics.setColor(0,255,0)
+              love.graphics.rectangle("fill",(x-1)*32,(y-1)*32,32*percent,4)
+              love.graphics.setColor(0,0,0)
+              love.graphics.rectangle("line",(x-1)*32,(y-1)*32,32*percent,4)
+            end
           end
         end
         love.graphics.setColor(255,255,255)
