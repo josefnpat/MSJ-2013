@@ -6,6 +6,7 @@ function connect:init()
   fonts = {}
   fonts.title = love.graphics.newFont("assets/gimmie_danger.ttf",64)
   fonts.ui = love.graphics.newFont("assets/iceland_regular.ttf",32)
+  fonts.ui2 = love.graphics.newFont("assets/iceland_regular.ttf",16)
   music=love.audio.newSource("assets/house.mp3")
   music:setLooping(true)
   love.audio.play(music)

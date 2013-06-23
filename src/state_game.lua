@@ -46,7 +46,6 @@ function game:draw()
     math.floor( (selection.y-1) * map.tileHeight)
   )
 
-  -- DEBUG EXAMPLE
   local buildings = client.buildings.get()
   for y,v in pairs(client.map.get()) do
     for x,w in pairs(v) do
@@ -57,9 +56,7 @@ function game:draw()
           love.graphics.setColor( colorgen.get(w.owner) )
           love.graphics.drawq(bld.img_color,bld.quads[w.tile],(x-1)*32,(y-2)*32)
           if buildings then
-            --love.graphics.print(buildings[w.tile].name.."\n"..w.hp,(x-1)*32,(y-1)*32)
-          else
-            --love.graphics.print(w.tile,(x-1)*32,(y-1)*32)
+            love.graphics.print(w.hp,(x-1)*32,(y-1)*32)
           end
         end
         love.graphics.setColor(255,255,255)
@@ -69,17 +66,15 @@ function game:draw()
 
   camera:unset()
   
+  love.graphics.print( "$" .. client.money(),32,32)
+
   if client.closed() then
-    love.graphics.print("You have been disconnected.",32,32)
+    love.graphics.print("You have been disconnected.",32,64)
   end
-  
-  love.graphics.print(
-    "Money: " .. client.money() .. "\n" ..
-    "Current selected building: " .. game.current_selected_building .. "\n" ..
-    "Camera X: " .. camera.x .. ", Tile X: " .. selection.x .. ", Mouse X: " .. mouseLoc.x .. "\n" .. 
-    "Camera Y: " .. camera.y .. ", Tile Y: " .. selection.y .. ", Mouse Y: " .. mouseLoc.y, 32, 64)
-    
+      
   local boff = 128
+  love.graphics.setColor(0,0,0,127)
+  love.graphics.rectangle("fill",0,boff-32,350,64*5+64)
   if client.buildings.get() then
     for i,v in pairs(client.buildings.get()) do
       if client.money() < v.cost then
@@ -89,7 +84,9 @@ function game:draw()
       else
         love.graphics.setColor(255,255,255)
       end
-      love.graphics.print(v.name .. " ($"..v.cost..")",32,boff+16*i)
+      love.graphics.drawq(bld.img,bld.quads[i],32,boff+64*(i-1))
+      love.graphics.printf(v.name .. "\n$"..v.cost,96,boff+64*(i-1),350-64-64,"left")
+      love.graphics.printf("\n"..i,96,boff+64*(i-1),350-64-64,"right")
     end
   end
   love.graphics.setColor(255,255,255)
